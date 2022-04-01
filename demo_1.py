@@ -6,7 +6,7 @@ from pandas.core.construction import array
 
 def dealExcelData(start):
     startY = 2010 + start
-    endY = 2012 + start
+    endY = 2011 + start
     # 根据年份筛选
     filetr_df = df[(df['年份'] <= endY) & (startY <= df['年份'])]
     out_arr = []
@@ -24,13 +24,13 @@ def dealExcelData(start):
     # 计算出每个公司所具有的发明数
     dict = {}
     for i in range(len(out_arr)):
-        tmp = out_arr[i][9]
+        tmp = out_arr[i][10]
         if tmp in dict:
-            dict[tmp]["public"].append(out_arr[i][6])
+            dict[tmp]["public"].append(out_arr[i][7])
         else:
             dict[tmp] = {
-                "provice": out_arr[i][3],
-                "public": [out_arr[i][6]]
+                "provice": out_arr[i][4],
+                "public": [out_arr[i][7]]
             }
 
     lst = list(dict.items())
@@ -83,11 +83,11 @@ bt = datetime.now()
 print('-----开始运行时间：', bt, '---------')
 
 # 读取表格
-df = pd.read_excel("C:/Users/LIU.JIANG/Desktop/4.xlsx", sheet_name=0)
+df = pd.read_excel("C:/Users/LIU.JIANG/Desktop/4.xlsx", sheet_name=1)
 
 
 # dealExcelData(9)
-for m in range(10):
+for m in range(11):
     dealExcelData(m)
 
 et = datetime.now()
